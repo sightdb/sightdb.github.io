@@ -22,6 +22,8 @@
   - [x] `PUT /:db_name/:doc_id/:attachment_name` (Create/Update Attachment)
   - [ ] `DELETE /:db_name/:doc_id/:attachment_name` (Delete Attachment)
   - [ ] `GET /:db_name/:doc_id/:attachment_name` (Read Attachment)
+- [ ] Revisions
+  - [ ] `rev`
 
 ### Authentication
 - [ ] Implement `_users` database for user management:
