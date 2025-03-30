@@ -1,201 +1,68 @@
-<h1 id="sightdb">SightDB</h1>
-<h2 id="roadmap">Roadmap</h2>
-<h3 id="basic-operations">Basic Operations</h3>
-<ul>
-   <li>
-      [x] Cluster/Node Operations
-      <ul>
-         <li>[x] <code>GET /</code> (Node Info)</li>
-      </ul>
-   </li>
-   <li>
-      [ ] Database Operations
-      <ul>
-         <li>[x] <code>GET /_all_dbs</code> (List Databases)</li>
-         <li>[x] <code>PUT /:db_name</code> (Create Database)</li>
-         <li>[x] <code>DELETE /:db_name</code> (Delete Database)</li>
-         <li>[ ] <code>GET /:db_name</code> (Get Database Info)</li>
-      </ul>
-   </li>
-   <li>
-      [x] Document Operations
-      <ul>
-         <li>[x] <code>GET /_all_docs</code> (List Documents)</li>
-         <li>[x] <code>PUT /:db_name/:doc_id</code> (Create/Update Document with ID)</li>
-         <li>[x] <code>POST /:db_name</code> (Create Document without ID)</li>
-         <li>[x] <code>DELETE /:db_name/:doc_id</code> (Delete Document)</li>
-         <li>[x] <code>GET /:db_name/:doc_id</code> (Get Document)</li>
-         <li>[x] <code>POST /:db_name/_bulk_docs</code> (Bulk Operations)</li>
-      </ul>
-   </li>
-   <li>
-      [ ] Attachments Operations
-      <ul>
-         <li>[ ] <code>GET /:db_name/:doc_id/_attachments</code> (List all attachments for a document)</li>
-         <li>[x] <code>PUT /:db_name/:doc_id/:attachment_name</code> (Create/Update Attachment)</li>
-         <li>[ ] <code>DELETE /:db_name/:doc_id/:attachment_name</code> (Delete Attachment)</li>
-         <li>[ ] <code>GET /:db_name/:doc_id/:attachment_name</code> (Read Attachment)</li>
-      </ul>
-   </li>
-   <li>
-      [ ] Revisions
-      <ul>
-         <li>[ ] <code>rev</code></li>
-      </ul>
-   </li>
-</ul>
-<h3 id="authentication">Authentication</h3>
-<ul>
-   <li>
-      [ ] Implement <code>_users</code> database for user management:
-      <ul>
-         <li>[ ] <code>POST /_users</code>: Create a new user.</li>
-         <li>[ ] <code>PUT /_users/:user_id</code>: Update an existing user.</li>
-         <li>[ ] <code>DELETE /_users/:user_id</code>: Delete a user.</li>
-         <li>[ ] <code>GET /_users/:user_id</code>: Retrieve information about a user.</li>
-      </ul>
-   </li>
-   <li>
-      [x] Support <code>_session</code> endpoint for session management:
-      <ul>
-         <li>
-            [x] <code>POST /_session</code>: Authenticate a user and create a session.
-            <ul>
-               <li>Accepts <code>name</code> and <code>password</code> as input.</li>
-               <li>Returns a cookie for session-based authentication.</li>
-            </ul>
-         </li>
-         <li>[ ] <code>DELETE /_session</code>: Log out a user and destroy the session.</li>
-         <li>
-            [ ] <code>GET /_session</code>: Retrieve information about the current session.
-            <ul>
-               <li>Returns authenticated user&#39;s name and roles if logged in.</li>
-            </ul>
-         </li>
-      </ul>
-   </li>
-   <li>[ ] Support both basic authentication and cookie-based sessions.</li>
-   <li>
-      [ ] Enforce security:
-      <ul>
-         <li>[ ] Use secure cookies with <code>HttpOnly</code> and <code>Secure</code> flags where applicable.</li>
-         <li>[ ] Implement token expiration and renewal mechanisms.</li>
-      </ul>
-   </li>
-</ul>
-<h3 id="authorization">Authorization</h3>
-<ul>
-   <li>
-      [ ] Implement CouchDB-style database-level security:
-      <ul>
-         <li>
-            [ ] Define Admins and Members roles for each database:
-            <ul>
-               <li><strong>Admins</strong>: Full control over the database (e.g., read, write, manage settings).</li>
-               <li><strong>Members</strong>: Limited to read and write access within the database.</li>
-            </ul>
-         </li>
-         <li>[ ] Enforce role-based permissions for database operations.</li>
-      </ul>
-   </li>
-   <li>
-      [ ] Support <code>_security</code> endpoint:
-      <ul>
-         <li>[ ] <code>PUT /:db_name/_security</code>: Update security settings for a database.</li>
-         <li>[ ] <code>GET /:db_name/_security</code>: Retrieve current security settings.</li>
-      </ul>
-   </li>
-   <li>
-      [ ] Enforce permissions for <code>_users</code> database:
-      <ul>
-         <li>[ ] Allow only admin users to manage users in the <code>_users</code> database.</li>
-      </ul>
-   </li>
-   <li>[ ] Integrate authentication with role enforcement.</li>
-</ul>
-<h3 id="replication">Replication</h3>
-<ul>
-   <li>[x] CouchDB is a master, SightDB needs to handle changes stream</li>
-   <li>[ ] As CouchDB Cluster Node</li>
-   <li>
-      [ ] Read CouchDB <code>_changes</code> feed
-      <ul>
-         <li>[ ] Polling and continuous modes</li>
-      </ul>
-   </li>
-</ul>
-<h3 id="views">Views</h3>
-<ul>
-   <li>
-      [ ] Map
-      <ul>
-         <li>[ ] Define Map logic storage</li>
-         <li>[ ] Query processing</li>
-      </ul>
-   </li>
-   <li>
-      [ ] Reduce
-      <ul>
-         <li>[ ] Define Reduce logic storage</li>
-         <li>[ ] Aggregation optimizations</li>
-      </ul>
-   </li>
-</ul>
-<h3 id="ci-cd">CI/CD</h3>
-<ul>
-   <li>
-      [x] Build Automation
-      <ul>
-         <li>[x] Dockerized builds</li>
-      </ul>
-   </li>
-   <li>
-      [x] Basic Tests
-      <ul>
-         <li>[x] CRUD operations</li>
-         <li>[ ] Security validation (Authentication, Authorization)</li>
-      </ul>
-   </li>
-   <li>
-      [ ] Integration tests
-      <ul>
-         <li>[ ] Replication tests (From CouchDB, Cluster Node, Changes Stream)</li>
-      </ul>
-   </li>
-   <li>
-      [ ] Performance benchmarks
-      <ul>
-         <li>[ ] Latency</li>
-         <li>[ ] Throughput</li>
-      </ul>
-   </li>
-</ul>
-<h2 id="future-features">Future Features</h2>
-<ul>
-   <li>
-      [ ] High Availability
-      <ul>
-         <li>
-            [ ] Multi-node
-            <ul>
-               <li>[ ] Automatic failover</li>
-               <li>[ ] Horizontal scaling</li>
-            </ul>
-         </li>
-         <li>
-            [ ] Master-Master replication
-            <ul>
-               <li>[ ] Conflict resolution policies</li>
-               <li>[ ] Synchronous vs. asynchronous modes</li>
-            </ul>
-         </li>
-         <li>
-            [ ] Multi-zones
-            <ul>
-               <li>[ ] Data distribution across geographic zones</li>
-               <li>[ ] Zone-specific failover and recovery</li>
-            </ul>
-         </li>
-      </ul>
-   </li>
-</ul>
+---
+layout: default
+title: SightDB - PostgreSQL-based Database with CouchDB API
+---
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>SightDB</h1>
+    <p class="tagline">PostgreSQL-based database implementing CouchDB API, optimized for Kazoo cluster environments</p>
+    <div class="cta-buttons">
+      <a href="https://hub.docker.com/repository/docker/koctep/sightdb/general" class="button primary">Get Started with Docker</a>
+      <a href="#quick-start" class="button secondary">Quick Start Guide</a>
+    </div>
+  </div>
+</div>
+
+<section class="features">
+  <h2>Key Features</h2>
+  <div class="feature-grid">
+    <div class="feature-item">
+      <h3>PostgreSQL Foundation</h3>
+      <p>Built on the robust and reliable PostgreSQL database system, providing enterprise-grade reliability and performance.</p>
+    </div>
+    <div class="feature-item">
+      <h3>CouchDB API Compatible</h3>
+      <p>Seamlessly integrate with existing CouchDB applications while leveraging PostgreSQL's powerful features.</p>
+    </div>
+    <div class="feature-item">
+      <h3>Kazoo Optimized</h3>
+      <p>Specifically designed for Kazoo cluster environments, ensuring optimal performance and compatibility.</p>
+    </div>
+    <div class="feature-item">
+      <h3>Docker Ready</h3>
+      <p>Quick and easy deployment with our official Docker image, perfect for modern containerized environments.</p>
+    </div>
+  </div>
+</section>
+
+<section class="quick-start" id="quick-start">
+  <h2>Quick Start Guide</h2>
+  <p>Get started with SightDB in minutes using Docker:</p>
+  <div class="code-block">
+    <pre><code>docker pull koctep/sightdb
+docker run -d -p 5984:5984 koctep/sightdb</code></pre>
+  </div>
+  <p>Connect to SightDB using standard CouchDB client libraries:</p>
+  <div class="code-block">
+    <pre><code>curl http://localhost:5984
+# Returns SightDB server information</code></pre>
+  </div>
+</section>
+
+<section class="why-sightdb">
+  <h2>Why Choose SightDB?</h2>
+  <ul>
+    <li>Combines PostgreSQL's reliability with CouchDB's flexible API</li>
+    <li>Optimized for high-performance in Kazoo environments</li>
+    <li>Easy integration with existing CouchDB applications</li>
+    <li>Built-in support for complex queries and transactions</li>
+    <li>Active development and community support</li>
+  </ul>
+</section>
+
+<section class="get-started">
+  <h2>Ready to Get Started?</h2>
+  <p>Deploy SightDB in your environment today and experience the perfect blend of PostgreSQL power and CouchDB flexibility.</p>
+  <a href="https://hub.docker.com/repository/docker/koctep/sightdb/general" class="button">Download from Docker Hub</a>
+</section>
