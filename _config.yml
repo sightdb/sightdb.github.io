@@ -1,7 +1,7 @@
 # Site settings
 title: SightDB
 description: PostgreSQL-based database implementing CouchDB API for Kazoo cluster environments
-url: "https://sight-db.github.io"
+url: "https://sightdb.github.io"
 baseurl: ""
 
 # Build settings

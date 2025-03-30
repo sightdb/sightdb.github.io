@@ -1,6 +1,6 @@
 # SightDB Website Repository
 
-This repository hosts the source code for SightDB's official website and blog at [sight-db.github.io](https://sight-db.github.io).
+This repository hosts the source code for SightDB's official website and blog at [sightdb.github.io](https://sightdb.github.io).
 
 ## About
 
