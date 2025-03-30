@@ -5,26 +5,30 @@
 
 /* Custom styles */
 .hero {
-  background: linear-gradient(135deg, #1a237e, #0d47a1);
+  background: linear-gradient(135deg, #ffeb3b, #4caf50, #2196f3);
   color: white;
   padding: 4rem 2rem;
   text-align: center;
-  
-  .hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .tagline {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-  }
+}
+
+.cta-buttons .button.primary {
+  background: #4caf50;
+  color: white;
+}
+
+.cta-buttons .button.secondary {
+  background: rgba(255, 235, 59, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 235, 59, 0.3);
+}
+
+.features .feature-item h3 {
+  color: #ffeb3b;
+}
+
+.get-started {
+  background: #2196f3;
+  color: white;
 }
 
 .cta-buttons {
