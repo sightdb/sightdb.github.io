@@ -1,45 +1,9 @@
-# Site settings
+# _config.yml
 title: SightDB
-description: PostgreSQL-based database implementing CouchDB API for Kazoo cluster environments
+description: Lightweight CouchDB-compatible database for Kazoo clusters
 url: "https://sightdb.github.io"
 baseurl: ""
-
-# Build settings
-markdown: kramdown
 theme: minima
+
 plugins:
   - jekyll-feed
-  - jekyll-seo-tag
-
-# Navigation
-header_pages:
-  - about.md
-  - docs.md
-  - blog.md
-
-# Collections
-collections:
-  posts:
-    output: true
-    permalink: /blog/:year/:month/:day/:title/
-
-# Defaults
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "page"
-
-# Exclude files from processing
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor
-  - .git/
